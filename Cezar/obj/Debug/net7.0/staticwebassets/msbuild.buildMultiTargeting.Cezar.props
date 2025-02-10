@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Cezar.props" />
+</Project>
