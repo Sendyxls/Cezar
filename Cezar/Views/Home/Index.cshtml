@@ -1,16 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Шифр Цезаря";
+    ViewData["Title"] = "Caesar Cipher";
 }
 
 <h2>Шифр Цезаря</h2>
 
 <form method="post" asp-action="Encrypt">
-    <input type="text" name="input" placeholder="Enter text" required />
-    <button type="submit">Ввод</button>
+    <input type="text" name="input" placeholder="Введите текст" required />
+    <input type="number" name="shift" placeholder="Напишите шаг шифровки" required />
+    <button type="submit">Поехали!</button>
 </form>
 
 @if (ViewBag.Original != null)
 {
-    <p>Original: @ViewBag.Original</p>
-    <p>Encrypted: @ViewBag.Encrypted</p>
+    <p>Оригинал: @ViewBag.Original</p>
+    <p>Шифрованный: @ViewBag.Encrypted</p>
+}
+
+
+
+<h2>РАсшифровка</h2>
+
+<form method="post" asp-action="Decrypt">
+    <input type="text" name="encryptedInput" placeholder="Введите шифр" required />
+    <input type="number" name="shift" placeholder="Шаг шифровки" required />
+    <button type="submit">Поехали!</button>
+</form>
+
+@if (ViewBag.EncryptedInput != null)
+{
+    <p>Шифр: @ViewBag.EncryptedInput</p>
+    <p>Оригинал: @ViewBag.Decrypted</p>
 }

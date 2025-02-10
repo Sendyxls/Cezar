@@ -8,10 +8,18 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Encrypt(string input, int shift = 3)
+    public IActionResult Encrypt(string input, int shift)
     {
         ViewBag.Original = input;
         ViewBag.Encrypted = CaesarCipher(input, shift);
+        return View("Index");
+    }
+
+    [HttpPost]
+    public IActionResult Decrypt(string encryptedInput, int shift)
+    {
+        ViewBag.EncryptedInput = encryptedInput;
+        ViewBag.Decrypted = CaesarCipher(encryptedInput, -shift);
         return View("Index");
     }
 
@@ -24,7 +32,7 @@ public class HomeController : Controller
             if (char.IsLetter(letter))
             {
                 char d = char.IsUpper(letter) ? 'A' : 'a';
-                buffer[i] = (char)((letter + shift - d) % 26 + d);
+                buffer[i] = (char)((letter + shift - d + 26) % 26 + d);
             }
         }
         return new string(buffer);
